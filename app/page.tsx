@@ -1,12 +1,12 @@
 "use client"
 import { useState } from "react"
 import { BloodInventoryPage } from "@/components/blood-inventory-page"
-import { VoiceChatInterface } from "@/components/voice-chat-interface"
-import { Droplet, Mic } from "lucide-react"
+import { WebSocketChatInterface } from "@/components/websocket-chat-interface"
+import { Droplet, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
-  const [showVoiceChat, setShowVoiceChat] = useState(false)
+  const [showChat, setShowChat] = useState(false)
 
   return (
     <main className="min-h-screen bg-background">
@@ -24,12 +24,12 @@ export default function Home() {
               </div>
             </div>
             <Button
-              onClick={() => setShowVoiceChat(!showVoiceChat)}
+              onClick={() => setShowChat(!showChat)}
               size="lg"
               className="gap-2 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-xl transition-all"
             >
-              <Mic className="w-5 h-5" />
-              <span className="hidden sm:inline">Voice Assistant</span>
+              <MessageSquare className="w-5 h-5" />
+              <span className="hidden sm:inline">Ask to Gavriel</span>
             </Button>
           </div>
         </div>
@@ -37,9 +37,9 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {showVoiceChat ? (
+        {showChat ? (
           <div className="animate-in fade-in duration-300">
-            <VoiceChatInterface onClose={() => setShowVoiceChat(false)} />
+            <WebSocketChatInterface onClose={() => setShowChat(false)} />
           </div>
         ) : (
           <div className="animate-in fade-in duration-300">
