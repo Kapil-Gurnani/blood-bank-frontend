@@ -36,9 +36,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build with basePath
+      - name: Build with basePath and AWS backend
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.AWS_API_BASE_URL || 'http://localhost:8080' }}
+          NEXT_PUBLIC_VOICE_CHAT_ENDPOINT: ${{ secrets.AWS_VOICE_CHAT_ENDPOINT || '/api/voice-chat' }}
+          NEXT_PUBLIC_WS_URL: ${{ secrets.AWS_WS_URL || 'http://localhost:8080/ws' }}
         run: pnpm run build
 
       - name: Setup Pages

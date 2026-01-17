@@ -80,8 +80,10 @@ export function VoiceChatInterface({ onClose }: VoiceChatInterfaceProps) {
     setIsProcessing(true)
 
     try {
-      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-      const response = await fetch(`${basePath}/api/voice-chat`, {
+      // Use AWS backend URL for voice chat API
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080"
+      const voiceChatEndpoint = process.env.NEXT_PUBLIC_VOICE_CHAT_ENDPOINT || "/api/voice-chat"
+      const response = await fetch(`${apiBaseUrl}${voiceChatEndpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text.trim() }),

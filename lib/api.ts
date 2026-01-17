@@ -1,4 +1,7 @@
-const API_BASE_URL = "http://localhost:8080/api/blood-banks"
+// API Base URL - should include the full path to the blood-banks API
+// For AWS: https://your-api.execute-api.us-east-1.amazonaws.com/prod/api/blood-banks
+// For local: http://localhost:8080/api/blood-banks
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api/blood-banks"
 
 export interface State {
   stateId: string

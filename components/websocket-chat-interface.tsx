@@ -45,7 +45,7 @@ interface UserLocation {
 
 export function WebSocketChatInterface({ 
   onClose, 
-  wsUrl = "http://localhost:8080/ws",
+  wsUrl = process.env.NEXT_PUBLIC_WS_URL || "http://localhost:8080/ws",
   username = "User"
 }: WebSocketChatInterfaceProps) {
   const [messages, setMessages] = useState<MessageDisplay[]>([])
