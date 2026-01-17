@@ -80,7 +80,8 @@ export function VoiceChatInterface({ onClose }: VoiceChatInterfaceProps) {
     setIsProcessing(true)
 
     try {
-      const response = await fetch("/api/voice-chat", {
+      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+      const response = await fetch(`${basePath}/api/voice-chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text.trim() }),
